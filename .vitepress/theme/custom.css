@@ -1,0 +1,32 @@
+/* 调整导航栏logo大小 */
+.VPNavBarTitle .logo {
+  height: 40px !important; /* 默认大约是24px，这里设置为40px */
+  width: auto; /* 保持宽高比 */
+}
+
+/* 如果需要在移动设备上也保持相同大小 */
+@media (max-width: 768px) {
+  .VPNavBarTitle .logo {
+    height: 36px !important; /* 移动设备上稍微小一点 */
+  }
+}
+
+/* 调整首页右侧logo的大小和样式 */
+.VPHero .image-container .image-src {
+  max-width: 320px !important; /* 设置最大宽度 */
+  width: 100%; /* 保持响应式 */
+  height: auto; /* 保持宽高比 */
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.08)); /* 添加轻微阴影效果 */
+}
+
+/* 在暗黑模式下可能需要调整logo的颜色或亮度 */
+.dark .VPHero .image-container .image-src {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2)) brightness(1.1); /* 暗黑模式下稍微提高亮度 */
+}
+
+/* 在移动设备上调整首页logo大小 */
+@media (max-width: 768px) {
+  .VPHero .image-container .image-src {
+    max-width: 240px !important;
+  }
+} 

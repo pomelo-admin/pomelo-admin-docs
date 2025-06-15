@@ -1,0 +1,28 @@
+{
+  "name": "pomelo-admin-docs",
+  "version": "1.0.0",
+  "description": "Pomelo Admin 文档站点",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pomelo-admin/pomelo-admin.github.io.git"
+  },
+  "homepage": "https://pomelo-admin.github.io",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev --port 3000",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview --port 4000",
+    "format": "prettier --write \"**/*.{js,ts,vue,md,json,css,scss}\"",
+    "format:check": "prettier --check \"**/*.{js,ts,vue,md,json,css,scss}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "vite": "^6.3.5",
+    "vitepress": "^1.6.3",
+    "vue": "^3.5.16"
+  }
+}
