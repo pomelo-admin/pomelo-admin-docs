@@ -47,7 +47,7 @@ export function login(data: LoginParams) {
   return request<LoginResult>({
     url: '/user/login',
     method: 'post',
-    data
+    data,
   })
 }
 
@@ -55,7 +55,7 @@ export function login(data: LoginParams) {
 export function getUserInfo() {
   return request<User>({
     url: '/user/info',
-    method: 'get'
+    method: 'get',
   })
 }
 
@@ -64,7 +64,7 @@ export function updateUserInfo(data: Partial<User>) {
   return request<User>({
     url: '/user/info',
     method: 'put',
-    data
+    data,
   })
 }
 
@@ -73,7 +73,7 @@ export function getUserList(params: any) {
   return request<{ list: User[]; total: number }>({
     url: '/user/list',
     method: 'get',
-    params
+    params,
   })
 }
 ```
@@ -125,34 +125,34 @@ export interface LoginResult {
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useRouter } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import { login } from '@/api/modules/user'
-import type { LoginParams } from '@/api/types'
+  import { ref, reactive } from 'vue'
+  import { useRouter } from 'vue-router'
+  import { ElMessage } from 'element-plus'
+  import { login } from '@/api/modules/user'
+  import type { LoginParams } from '@/api/types'
 
-const router = useRouter()
-const loading = ref(false)
-const loginForm = reactive<LoginParams>({
-  username: '',
-  password: ''
-})
+  const router = useRouter()
+  const loading = ref(false)
+  const loginForm = reactive<LoginParams>({
+    username: '',
+    password: '',
+  })
 
-const handleLogin = async () => {
-  try {
-    loading.value = true
-    const { token } = await login(loginForm)
-    // 存储 token
-    localStorage.setItem('token', token)
-    ElMessage.success('登录成功')
-    // 跳转到首页
-    router.push('/')
-  } catch (error: any) {
-    ElMessage.error(error.message || '登录失败')
-  } finally {
-    loading.value = false
+  const handleLogin = async () => {
+    try {
+      loading.value = true
+      const { token } = await login(loginForm)
+      // 存储 token
+      localStorage.setItem('token', token)
+      ElMessage.success('登录成功')
+      // 跳转到首页
+      router.push('/')
+    } catch (error: any) {
+      ElMessage.error(error.message || '登录失败')
+    } finally {
+      loading.value = false
+    }
   }
-}
 </script>
 ```
 
@@ -171,13 +171,13 @@ const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json'
-  }
+    'Content-Type': 'application/json',
+  },
 })
 
 // 请求拦截器
 instance.interceptors.request.use(
-  (config) => {
+  config => {
     // 从 localStorage 获取 token
     const token = localStorage.getItem('token')
     if (token) {
@@ -185,30 +185,30 @@ instance.interceptors.request.use(
     }
     return config
   },
-  (error) => {
+  error => {
     return Promise.reject(error)
   }
 )
 
 // 响应拦截器
 instance.interceptors.response.use(
-  (response) => {
+  response => {
     const res = response.data
-    
+
     // 根据后端接口规范处理响应
     if (res.code === 0) {
       return res.data
     }
-    
+
     // 处理业务错误
     ElMessage.error(res.message || '请求失败')
     return Promise.reject(new Error(res.message || '请求失败'))
   },
-  (error) => {
+  error => {
     // 处理 HTTP 错误
     if (error.response) {
       const { status } = error.response
-      
+
       if (status === 401) {
         ElMessage.error('登录已过期，请重新登录')
         // 清除 token 并跳转到登录页
@@ -226,7 +226,7 @@ instance.interceptors.response.use(
     } else {
       ElMessage.error(`网络错误: ${error.message}`)
     }
-    
+
     return Promise.reject(error)
   }
 )
@@ -239,8 +239,8 @@ export function request<T = any>(config: AxiosRequestConfig): Promise<T> {
 
 ## 接口文档
 
-在[接口文档](./interfaces)章节中，我们将详细介绍 Pomelo Admin 提供的所有 API 接口，包括请求参数、响应数据格式和使用示例。
+在接下来的章节中，我们将详细介绍 Pomelo Admin 提供的所有 API 接口，包括请求参数、响应数据格式和使用示例。
 
 ## 工具函数
 
-在[工具函数](./utils)章节中，我们将介绍 Pomelo Admin 提供的一些常用工具函数，如数据转换、格式化、校验等，这些函数可以帮助你更高效地处理 API 相关的数据。 
+我们还将介绍 Pomelo Admin 提供的一些常用工具函数，如数据转换、格式化、校验等，这些函数可以帮助你更高效地处理 API 相关的数据。

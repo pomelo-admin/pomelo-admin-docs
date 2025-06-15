@@ -12,7 +12,7 @@ pnpm install
 pnpm docs:dev
 ```
 
-开发服务器将在 http://localhost:3000 启动。
+开发服务器将在本地启动。
 
 ## 构建
 
@@ -30,7 +30,7 @@ pnpm docs:build
 pnpm docs:preview
 ```
 
-预览服务器将在 http://localhost:4000 启动。
+预览服务器将在本地启动。
 
 ## 部署
 
