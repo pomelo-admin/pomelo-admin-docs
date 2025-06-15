@@ -56,7 +56,7 @@ cd my-project
 pnpm dev
 ```
 
-现在，你可以在浏览器中访问 [http://localhost:5173](http://localhost:5173) 查看你的项目。
+现在，你可以在浏览器中访问本地开发服务器查看你的项目。
 
 ## 项目结构
 
@@ -107,4 +107,4 @@ pnpm build
 - 学习[开发规范](./code-style)，确保代码质量
 - 探索[组件库](/components/)，加速开发过程
 
-如果你在使用过程中遇到任何问题，可以查阅我们的[常见问题](/faq)或者在[GitHub Issues](https://github.com/yourusername/pomelo-admin/issues)中提问。
+如果你在使用过程中遇到任何问题，可以在[GitHub Issues](https://github.com/yourusername/pomelo-admin/issues)中提问。
