@@ -6,9 +6,7 @@ export default defineConfig({
   description: 'Pomelo Admin 在线文档',
   lang: 'zh-CN',
   lastUpdated: true,
-  // 如果是部署到组织的主页 pomelo-admin.github.io，使用 '/'
-  // 如果是部署到项目页面 pomelo-admin.github.io/pomelo-admin-docs，使用 '/pomelo-admin-docs/'
-  base: '/',
+  base: '/pomelo-admin-docs/',
 
   head: [['link', { rel: 'icon', href: '/images/pomelo-logo.svg', type: 'image/svg+xml' }]],
 
