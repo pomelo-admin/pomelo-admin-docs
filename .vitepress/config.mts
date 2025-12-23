@@ -1,12 +1,14 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+const base = process.env.DOCS_BASE ?? '/'
+
 export default defineConfig({
   title: 'Pomelo Admin 在线文档',
   description: 'Pomelo Admin 在线文档',
   lang: 'zh-CN',
   lastUpdated: true,
-  base: '/pomelo-admin-docs/',
+  base,
 
   head: [['link', { rel: 'icon', href: '/images/pomelo-logo.svg', type: 'image/svg+xml' }]],
 
@@ -30,7 +32,7 @@ export default defineConfig({
         {
           text: '指南',
           items: [
-            { text: '介绍', link: '/guide/' },
+            { text: '项目总览', link: '/guide/' },
             { text: '快速开始', link: '/guide/getting-started' },
             { text: '项目结构', link: '/guide/project-structure' },
             { text: '开发规范', link: '/guide/code-style' },

@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Pomelo Admin"
-  text: "现代化的管理系统"
+  name: 'Pomelo Admin'
+  text: '现代化的管理系统'
   tagline: 一款开源免费且开箱即用的中后台管理系统模板
   image:
     src: /images/pomelo-logo.svg
@@ -33,7 +33,7 @@ features:
   - icon: 🌍
     title: 支持国际化
     details: 支持中文、英文语言国际化
-  - icon: 📊
-    title: 配套的监控平台
-    details: 提供配套的Pomelo Trace前端监控平台，快速搭建监控平台
+  - icon: 🧱
+    title: 一键创建项目脚手架
+    details: 提供官方脚手架工具，支持交互式选择技术栈与模块，一条命令即可生成完整的前后端项目骨架
 ---

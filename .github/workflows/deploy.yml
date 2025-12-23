@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build and Deploy to Cloud Server
 
 on:
   push:
@@ -7,8 +7,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build-and-deploy:
@@ -45,16 +43,34 @@ jobs:
         run: pnpm install
 
       - name: Build
+        env:
+          DOCS_BASE: /pomelo-admin-docs/
         run: pnpm docs:build
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      # 部署到云服务器
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to Cloud Server
+        uses: appleboy/scp-action@v0.1.7
         with:
-          path: .vitepress/dist
+          host: 117.72.74.72
+          username: root
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          source: '.vitepress/dist/*'
+          target: /var/www/html
+          strip_components: 2
+          rm: true
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # 重启 Nginx (可选)
+      - name: Restart Nginx
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 117.72.74.72
+          username: root
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          script: |
+            # 设置文件权限
+            chmod -R 755 /var/www/html
+            # 重新加载 nginx
+            nginx -t && nginx -s reload
